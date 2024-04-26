@@ -34,11 +34,19 @@ app.use(express.static('static'));
 
 // 根路径请求返回index.html
 app.get('/', (req, res) => {
+    requestCount++;
+	  const realIp = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.ip;
+	  console.log(`Received ${requestCount} requests so far.`);
+	  console.log(`Request from IP: ${realIp}, Time: ${new Date().toISOString()}`);
     res.sendFile(path.join(__dirname, 'static', 'index.html'));
 });
 
 // 路由来下载日志文件
 app.get('/download-log', (req, res) => {
+    requestCount++;
+	  const realIp = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.ip;
+	  console.log(`Received ${requestCount} requests so far.`);
+	  console.log(`Request from IP: ${realIp}, Time: ${new Date().toISOString()}`);
     const file = `${__dirname}/logs/combined.log`; 
     res.download(file); // Express 的 res.download 方法来触发文件下载
 });
