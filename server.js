@@ -10,7 +10,7 @@ const port = process.env.PORT || 3001; // 使用环境变量或默认值设置�
 const { getBlockedIPs } = require('./ipBlockList');
 
 app.use((req, res, next) => {
-    const ip = req.ip;
+    const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.ip;
     if (getBlockedIPs().includes(ip)) {
         res.status(403).send('Access denied');
     } else {
