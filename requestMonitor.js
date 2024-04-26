@@ -4,7 +4,7 @@ const requestTimes = {};
 const lastNotified = {}; // 用于存储最后通知时间的对象
 
 function monitorRequests(req, res, next) {
-    const ip = req.ip;
+    const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.ip;
     const now = Date.now();
     
     if (!requestTimes[ip]) {
