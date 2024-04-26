@@ -2,8 +2,9 @@ const axios = require('axios');
 const TelegramBot = require('node-telegram-bot-api');
 const { addIP, removeIP, getBlockedIPs } = require('./ipBlockList');
 
-const telegramToken = '7193827058:AAHoSraIfucW7CKUeTKcTy4JC6gkMQmEopw';
-const chatId = '6117865803';
+const telegramToken = process.env.TELEGRAM_TOKEN;
+const chatId = process.env.CHAT_ID;
+
 const bot = new TelegramBot(telegramToken, { polling: true });
 
 function sendNotification(message) {
