@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const logger = require('./logger');
 const app = express();
-const port = 3001;
+const port = 3002;
 
 morgan.token('real-ip', function (req) {
 	  return req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.ip;
