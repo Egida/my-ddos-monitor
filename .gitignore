@@ -3,7 +3,6 @@
 
 # 忽略日志文件
 logs/
-combined.log
 
 # 忽略ips文件
 blockedIPs.json
